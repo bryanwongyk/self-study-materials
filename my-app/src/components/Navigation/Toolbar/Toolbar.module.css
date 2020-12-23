@@ -17,3 +17,14 @@
     height: 100%;
     
 }
+
+.Logo {
+    height: 80%;
+}
+
+/* Mobile device */
+@media (max-width: 499px) {
+    .DesktopOnly {
+        display: none;
+    }
+}
