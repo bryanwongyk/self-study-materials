@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -19,14 +21,12 @@ class BurgerBuilder extends Component {
         },
         totalPrice: 0,
         // purchaseable is true when there is at least one ingredient selected
-        purchaseable: false
+        purchaseable: false,
+        purchasing: false
     }
 
     // Disables or enables order button depending on if any ingredients have been added ornot
-    updatePurchaseState(){
-        const ingredients = {
-            ...this.state.ingredients
-        };
+    updatePurchaseState(ingredients){
         const sum = Object.keys(ingredients)
             .map(igKey => {
                 return ingredients[igKey]
@@ -80,6 +80,10 @@ class BurgerBuilder extends Component {
         this.updatePurchaseState(updatedIngredients);
     }
 
+    purchaseHandler = () => {
+        this.setState({purchasing: true});
+    }
+
     render(){
         const disabledInfo = {
             ...this.state.ingredients
@@ -92,13 +96,17 @@ class BurgerBuilder extends Component {
 
         return(
             <Fragment>
+                <Modal show={this.state.purchasing}>
+                    <OrderSummary ingredients={this.state.ingredients}></OrderSummary>
+                </Modal>
                 <Burger ingredients={this.state.ingredients}></Burger>
                 <BuildControls 
                     added={this.addIngredientHandler} 
                     removed={this.removeIngredientHandler}
                     disabled={disabledInfo}
                     price={this.state.totalPrice}
-                    purchasable={this.state.purchasable}/>
+                    purchasable={this.state.purchasable}
+                    ordered={this.purchaseHandler}/>
             </Fragment>
         );
     }
