@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import classes from './Layout.module.css';
-import Toolbar from '../Navigation/Toolbar/Toolbar'
-import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 class Layout extends Component {
     state = {
@@ -19,7 +19,6 @@ class Layout extends Component {
     }
 
     render(){
-        console.log(this.state.showSideDrawer);
         return(
             <Fragment>
                 <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler}/>
