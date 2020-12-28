@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 
 import Modal from '../../components/UI/Modal/Modal';
 
@@ -8,7 +8,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         //set state of error to null initially
         const [error, setError] = useState(null);
 
-        axios.interceptors.request.use(req => {
+        const reqInterceptor = axios.interceptors.request.use(req => {
             // We want to clear any errors when we make a request.
             // We only want to set an error when we make a response.
             setError(null);
@@ -16,7 +16,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         })
         // We aren't interested in the response, so we just immediately return the response.
         // We just want to catch errors
-        axios.interceptors.response.use(res => res, error => {
+        const resInterceptor = axios.interceptors.response.use(res => res, error => {
             setError(error);
             return Promise.reject(error);
         })
@@ -26,6 +26,13 @@ const withErrorHandler = (WrappedComponent, axios) => {
         const errorConfirmedHandler = () => {
             setError(null);
         }
+
+        useEffect(() => {
+            return () => {
+                axios.interceptors.request.eject(reqInterceptor);
+                axios.interceptors.response.eject(resInterceptor);
+            }
+        })
 
         return (
             <Fragment>
