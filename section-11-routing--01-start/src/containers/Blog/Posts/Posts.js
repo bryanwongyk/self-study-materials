@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from '../../../axios';
 import Post from '../../../components/Post/Post';
-import classes from './Posts.module.css';
+import './Posts.module.css';
 
 class Posts extends Component {
     state = {
@@ -43,7 +43,7 @@ class Posts extends Component {
             });
         }
         return(
-            <section className="Posts">
+            <section className='Posts'>
                 {posts}
             </section>
         )
