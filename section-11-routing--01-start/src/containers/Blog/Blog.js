@@ -4,7 +4,7 @@ import './Blog.module.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 
-import {Route, Link, Switch} from 'react-router-dom';
+import {Route, Link, Switch, NavLink} from 'react-router-dom';
 
 class Blog extends Component {
     render () {
@@ -12,8 +12,8 @@ class Blog extends Component {
             <div className='Blog'>
                 <header>
                     <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/new-post">New Post</Link></li>
+                        <li><NavLink to="/" activeClassName='my-active' exact>Home</NavLink></li>
+                        <li><NavLink to="/new-post">New Post</NavLink></li>
                     </ul>
                 </header>
 
@@ -24,8 +24,8 @@ class Blog extends Component {
                         <NewPost />
                     </Route>
 
-                    <Route path="/">
-                        <Posts />
+                    {/* To get access to match, history, location props in Posts */}
+                    <Route path="/" component={Posts}>
                     </Route>
                 </Switch>
             </div>
