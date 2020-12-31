@@ -4,9 +4,13 @@ import './Blog.module.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 
-import {Route, Link, Switch, NavLink} from 'react-router-dom';
+import {Route, Link, Switch, NavLink, Redirect} from 'react-router-dom';
 
 class Blog extends Component {
+    state = {
+        auth: false
+    }
+
     render () {
         return (
             <div className='Blog'>
@@ -23,10 +27,10 @@ class Blog extends Component {
                 <Route path="/" render={() => <h1>New Post</h1>} /> */}
                 <Switch>            
                     {/* To get access to match, history, location props in Posts */}
-                    <Route path="/new-post">
-                        <NewPost />
-                    </Route>
+                    {/* {this.state.auth ? <Route path="/new-post" component={NewPost}/> : null} */}
+                    <Route path="/new-post" component={NewPost}/>
                     <Route path="/posts" component={Posts}/>
+                    <Redirect from="/" to="/posts"/>
                 </Switch>
             </div>
         );
