@@ -11,22 +11,22 @@ class Blog extends Component {
         return (
             <div className='Blog'>
                 <header>
-                    <ul>
-                        <li><NavLink to="/" activeClassName='my-active' exact>Home</NavLink></li>
-                        <li><NavLink to="/new-post">New Post</NavLink></li>
-                    </ul>
+                    <nav>
+                        <ul>
+                            <li><NavLink to="/posts" exact>Home</NavLink></li>
+                            <li><NavLink to="/new-post">New Post</NavLink></li>
+                        </ul>
+                    </nav>
                 </header>
 
                 {/* <Route path="/" exact render={() => <h1>Home</h1>} />
                 <Route path="/" render={() => <h1>New Post</h1>} /> */}
-                <Switch>
+                <Switch>            
+                    {/* To get access to match, history, location props in Posts */}
                     <Route path="/new-post">
                         <NewPost />
                     </Route>
-
-                    {/* To get access to match, history, location props in Posts */}
-                    <Route path="/" component={Posts}>
-                    </Route>
+                    <Route path="/posts" component={Posts}/>
                 </Switch>
             </div>
         );
