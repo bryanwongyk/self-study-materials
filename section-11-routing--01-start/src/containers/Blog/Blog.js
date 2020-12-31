@@ -27,10 +27,11 @@ class Blog extends Component {
                 <Route path="/" render={() => <h1>New Post</h1>} /> */}
                 <Switch>            
                     {/* To get access to match, history, location props in Posts */}
-                    {/* {this.state.auth ? <Route path="/new-post" component={NewPost}/> : null} */}
-                    <Route path="/new-post" component={NewPost}/>
+                    {this.state.auth ? <Route path="/new-post" component={NewPost}/> : null}
+                    {/* <Route path="/new-post" component={NewPost}/> */}
                     <Route path="/posts" component={Posts}/>
-                    <Redirect from="/" to="/posts"/>
+                    <Redirect from="/" to="/posts" exact/>
+                    <Route render={() => <div>404: Not found</div>}/>
                 </Switch>
             </div>
         );
