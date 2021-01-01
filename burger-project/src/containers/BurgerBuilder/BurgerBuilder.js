@@ -98,34 +98,65 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        //alert('You continue!');
-        this.setState({loading: true});
+        /*Method 1. String concatenation */
+        // let query = '';
+        // const ingredients = {...this.state.ingredients};
+        // for (const [ingredient, amount] of Object.entries(ingredients)) {
+        //     if (query === '') {
+        //         query += '?'
+        //     } else {
+        //         query += '&'
+        //     }
+        //     query += ingredient + '=' + amount;
+        // }
+        // this.props.history.push('/checkout' + query);
 
-        // Dummy data
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Bryan Wong',
-                address: {
-                    street: 'Teststreet 1',
-                    zipCode: '41351',
-                    country: 'Australia'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'express'
+        /* Method 2. Max's solution */
+        const queryParams = [];
+        // its ok to iterate over state objects, as long as we are not mutating them (in which case we should use a spread operator to create a copy).
+        for (let ingredient in this.state.ingredients) {
+            //ingredient is the key names
+            // encodeURIComponent is given by JS to allow us to encode our elements to be able to be used in a URL. It is needed so that the
+            // browser can interpret special characters like '?', '&' properly.
+            queryParams.push(encodeURIComponent(ingredient) + '=' + encodeURIComponent(this.state.ingredients[ingredient]));
         }
 
-        axios.post('/orders.json', order)
-        .then(response => {
-            this.setState({loading: false, purchasing: false});
-            console.log(response);
-        })
-        .catch(error => {
-            this.setState({loading: false, purchasing: false});
-            console.log(error)
+        const queryString = queryParams.join('&');
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
         });
+
+
+        //alert('You continue!');
+        // this.setState({loading: true});
+
+        // // Dummy data
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Bryan Wong',
+        //         address: {
+        //             street: 'Teststreet 1',
+        //             zipCode: '41351',
+        //             country: 'Australia'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'express'
+        // }
+
+        // axios.post('/orders.json', order)
+        // .then(response => {
+        //     this.setState({loading: false, purchasing: false});
+        //     console.log(response);
+        // })
+        // .catch(error => {
+        //     this.setState({loading: false, purchasing: false});
+        //     console.log(error)
+        // });
     }
 
     render(){

@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './Burger.module.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
+import {withRouter} from 'react-router-dom';
+
 const burger = (props) => {
     // Convert object into array of the keys
     // The values are not inclulded 
@@ -35,4 +37,4 @@ const burger = (props) => {
     );
 }
 
-export default burger;
+export default withRouter(burger);
