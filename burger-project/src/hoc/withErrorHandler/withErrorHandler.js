@@ -32,7 +32,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
                 axios.interceptors.request.eject(reqInterceptor);
                 axios.interceptors.response.eject(resInterceptor);
             }
-        })
+        }, [reqInterceptor, resInterceptor]);
 
         return (
             <Fragment>
