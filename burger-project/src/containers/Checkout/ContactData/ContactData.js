@@ -8,11 +8,57 @@ import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component{
     state = {
-        name: '',
-        email: '',
-        address: {
-            street: '',
-            postalCode: ''
+        orderForm: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your Name'
+                },
+                value: ''
+            },
+            street: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Street'
+                },
+                value: ''
+            },
+            zipCode: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'ZIP code'
+                },
+                value: ''
+            },
+            country: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Country'
+                },
+                value: ''
+            },
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Email'
+                },
+                value: ''
+            },
+            deliveryMethod: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: 'fastest', displayValue: 'Fastest'},
+                        {value: 'cheapest', displayValue: 'Cheapest'}
+                    ]
+                },
+                value: ''
+            }
         },
         // loading allows us to load a spinner if we want to
         loading: false
@@ -52,17 +98,25 @@ class ContactData extends Component{
     }
 
     render(){
-        console.log(this.props);
+        const formElementsArray = [];
+        for (let key in this.state.orderForm) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.orderForm[key]
+            })
+        }
+
         let form = null;
         if (this.state.loading) {
             form = <Spinner />
         } else {
             form = (
                 <form>
-                    <Input inputtype="input" name="name" placeholder="Your name"></Input>
-                    <Input inputtype="input" name="email" placeholder="Your email"></Input>
-                    <Input inputtype="input" name="street" placeholder="Street"></Input>
-                    <Input inputtype="input" name="postalCode" placeholder="Postal Code"></Input>
+                    {
+                        formElementsArray.map(formElement => (
+                            <Input key={formElement.id} elementType={formElement.config.elementType} elementConfig={formElement.config.elementConfig} value={formElement.config.value}/>
+                        ))
+                    }
                     <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
                 </form>
             )
