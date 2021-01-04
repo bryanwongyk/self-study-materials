@@ -85,16 +85,17 @@ class ContactData extends Component{
                     ]
                 },
                 value: '',
-                valid: false
+                validation: {},
+                valid: true
             }
         },
+        formIsValid: false,
         // loading allows us to load a spinner if we want to
         loading: false
     }
 
     orderHandler = (event) => {
         event.preventDefault();
-        console.log(this.props.ingredients);
         this.setState({loading: true});
 
         const formData = {};
@@ -154,8 +155,15 @@ class ContactData extends Component{
         // Update the form element in the orderForm with our updated form element
         updatedOrderForm[inputIdentifier] = updatedFormElement;
 
+        // Check through all inputs for validity
+        let formIsValid = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            // the formIsValid prevents issue of overwriting
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+
         // setState with updated order form
-        this.setState({orderForm: updatedOrderForm});
+        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
     }
 
     render(){
@@ -187,7 +195,7 @@ class ContactData extends Component{
                             />
                         ))
                     }
-                    <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
+                    <Button btnType="Success" disabled={!this.state.formIsValid} clicked={this.orderHandler}>ORDER</Button>
                 </form>
             )
         }
