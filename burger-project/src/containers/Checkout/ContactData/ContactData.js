@@ -69,23 +69,13 @@ class ContactData extends Component{
         console.log(this.props.ingredients);
         this.setState({loading: true});
 
-        // Dummy data
-        const order = {
-            ingredients: this.props.ingredients,
-            price: this.props.price,
-            customer: {
-                name: 'Bryan Wong',
-                address: {
-                    street: 'Teststreet 1',
-                    zipCode: '41351',
-                    country: 'Australia'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'express'
+        const formData = {};
+
+        for (let formElementIdentifier in this.state.orderForm) {
+            formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
 
-        axios.post('/orders.json', order)
+        axios.post('/orders.json', formData)
         .then(response => {
             this.setState({loading: false});
             this.props.history.push('/');
@@ -95,6 +85,29 @@ class ContactData extends Component{
             this.setState({loading: false});
             console.log(error)
         });
+    }
+
+    inputChangedHandler = (event, inputIdentifier) => {
+        // Just taking this.state.orderForm creates a shallow clone of object pointers, since it stores more objects. 
+        // So we need to directly reference the inputIdentifier. 
+        // We also need to make a copy of the updatedOrderForm for our setState
+        const updatedOrderForm = {
+            ...this.state.orderForm
+        }
+
+        // This will make a shallow copy of the given form element
+        const updatedFormElement = {
+            ...updatedOrderForm[inputIdentifier]
+        }
+
+        // Update the form element value
+        updatedFormElement.value = event.target.value;
+
+        // Update the form element in the orderForm with our updated form element
+        updatedOrderForm[inputIdentifier] = updatedFormElement;
+
+        // setState with updated order form
+        this.setState({orderForm: updatedOrderForm});
     }
 
     render(){
@@ -111,10 +124,16 @@ class ContactData extends Component{
             form = <Spinner />
         } else {
             form = (
-                <form>
+                <form onSubmit={this.orderHandler}>
                     {
                         formElementsArray.map(formElement => (
-                            <Input key={formElement.id} elementType={formElement.config.elementType} elementConfig={formElement.config.elementConfig} value={formElement.config.value}/>
+                            <Input 
+                                key={formElement.id} 
+                                elementType={formElement.config.elementType} 
+                                elementConfig={formElement.config.elementConfig} 
+                                value={formElement.config.value} 
+                                changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                            />
                         ))
                     }
                     <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
