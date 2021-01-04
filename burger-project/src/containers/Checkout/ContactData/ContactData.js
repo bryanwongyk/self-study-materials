@@ -15,7 +15,11 @@ class ContactData extends Component{
                     type: 'text',
                     placeholder: 'Your Name'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false
             },
             street: {
                 elementType: 'input',
@@ -23,7 +27,11 @@ class ContactData extends Component{
                     type: 'text',
                     placeholder: 'Street'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false
             },
             zipCode: {
                 elementType: 'input',
@@ -31,7 +39,13 @@ class ContactData extends Component{
                     type: 'text',
                     placeholder: 'ZIP code'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 5
+                },
+                valid: false
             },
             country: {
                 elementType: 'input',
@@ -39,7 +53,11 @@ class ContactData extends Component{
                     type: 'text',
                     placeholder: 'Country'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false
             },
             email: {
                 elementType: 'input',
@@ -47,7 +65,11 @@ class ContactData extends Component{
                     type: 'email',
                     placeholder: 'Email'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false
             },
             deliveryMethod: {
                 elementType: 'select',
@@ -57,7 +79,8 @@ class ContactData extends Component{
                         {value: 'cheapest', displayValue: 'Cheapest'}
                     ]
                 },
-                value: ''
+                value: '',
+                valid: false
             }
         },
         // loading allows us to load a spinner if we want to
@@ -87,6 +110,22 @@ class ContactData extends Component{
         });
     }
 
+    checkValidity(value, rules) {
+        // && isValid deals with the flaw of if the first rule is False, but the last rule is True, then it will return isValid is True even if one of the rules is broken.
+        let isValid = true;
+        if (rules.required) {
+            // required means that there is a value inside. trim() removes any white spaces.
+            isValid = (value.trim() !== '') && isValid;
+        }
+        if (rules.minLength) {
+            isValid = (value.length >= rules.minLength) && isValid;
+        }
+        if (rules.maxLength) {
+            isValid = (value.length <= rules.maxLength) && isValid;
+        }
+        return isValid;
+    }
+
     inputChangedHandler = (event, inputIdentifier) => {
         // Just taking this.state.orderForm creates a shallow clone of object pointers, since it stores more objects. 
         // So we need to directly reference the inputIdentifier. 
@@ -102,6 +141,8 @@ class ContactData extends Component{
 
         // Update the form element value
         updatedFormElement.value = event.target.value;
+        // Update 'valid' property
+        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
 
         // Update the form element in the orderForm with our updated form element
         updatedOrderForm[inputIdentifier] = updatedFormElement;
@@ -133,6 +174,8 @@ class ContactData extends Component{
                                 elementConfig={formElement.config.elementConfig} 
                                 value={formElement.config.value} 
                                 changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                                invalid={!formElement.config.valid}
+                                shouldValidate={formElement.config.validation}
                             />
                         ))
                     }
