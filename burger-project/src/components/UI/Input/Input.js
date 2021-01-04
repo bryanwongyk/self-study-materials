@@ -7,7 +7,7 @@ const input = (props) => {
 
     // Dynamic red styling for invalid classes
     // props.shouldValidate checks if the form element has a validation object. If it doesn't then it has no validation rules, and should not be highlighted red.
-    if (props.invalid && props.shouldValidate) {
+    if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
     }
 
