@@ -39,15 +39,17 @@ const rootReducer = (state = initialState, action) => {
 // Store - attach reducer to store
 const store = createStore(rootReducer);
 // Command to get the state from the central store
-console.log(store.getState())
+// console.log(store.getState())
+
+// Subscription
+// Should be set up right after the store is created, so that code that is run synchronously after can be triggered.
+store.subscribe(() => {
+    console.log('[Subscription]', store.getState());
+});
 
 // Dispatching Action
 // Store dispatches an Action with a 'type' property
-
 // Increment counter
 store.dispatch({type: 'INC_COUNTER'});
 // Add an integer to the counter. You can name this anything e.g. value, payload etc. A payload usually indicates an object of data.
 store.dispatch({type: 'ADD_COUNTER', value: 10});
-console.log(store.getState());
-
-// Subscription
