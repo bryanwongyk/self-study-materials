@@ -42,7 +42,7 @@ const store = createStore(rootReducer);
 // console.log(store.getState())
 
 // Subscription
-// Should be set up right after the store is created, so that code that is run synchronously after can be triggered.
+// Should be set up right after the store is created, so that actions that are dispatched synchronously after can trigger the subscription.
 store.subscribe(() => {
     console.log('[Subscription]', store.getState());
 });
