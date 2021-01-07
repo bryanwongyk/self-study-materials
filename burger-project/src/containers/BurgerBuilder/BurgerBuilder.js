@@ -162,6 +162,7 @@ class BurgerBuilder extends Component {
     }
 
     render(){
+        // The remove build control where the ingredient has an amount of <= 0 should be disabled.
         const disabledInfo = {
             ...this.state.ingredients
         }
