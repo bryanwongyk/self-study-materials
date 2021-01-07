@@ -9,17 +9,10 @@ import axios from '../../axios-orders';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
-const INGREDIENT_PRICES = {
-    salad: 0.5,
-    cheese: 0.4,
-    meat: 1.3,
-    bacon: 0.7
-}
-
 class BurgerBuilder extends Component {
     state = {
         // purchaseable is true when there is at least one ingredient selected
-        purchaseable: false,
+        // purchaseable: false,
         purchasing: false,
         loading: false,
         error: false
@@ -43,7 +36,7 @@ class BurgerBuilder extends Component {
             .reduce((sum, el) => {
                 return sum + el;
             }, 0);
-        this.setState({purchasable: sum > 0});
+        return sum > 0;
     }
 
     // addIngredientHandler = (type) => {
@@ -184,7 +177,7 @@ class BurgerBuilder extends Component {
                         removed={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
                         price={this.props.totalPrice}
-                        purchasable={this.state.purchasable}
+                        purchasable={this.updatePurchaseState(this.props.ingredients)}
                         ordered={this.purchaseHandler}/>
                 </Fragment>
             if (!this.state.loading){
