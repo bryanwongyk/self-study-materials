@@ -104,7 +104,7 @@ class BurgerBuilder extends Component {
         // }
         // this.props.history.push('/checkout' + query);
 
-        /* Method 2. Max's solution */
+        /* Method 2. Max's solution 
         const queryParams = [];
         // its ok to iterate over state objects, as long as we are not mutating them (in which case we should use a spread operator to create a copy).
         for (let ingredient in this.props.ingredients) {
@@ -117,10 +117,10 @@ class BurgerBuilder extends Component {
         queryParams.push('price=' + this.props.totalPrice);
 
         const queryString = queryParams.join('&');
+        */
 
         this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
+            pathname: '/checkout'
         });
 
 

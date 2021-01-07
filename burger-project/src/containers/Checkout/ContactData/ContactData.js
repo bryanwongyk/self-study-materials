@@ -3,8 +3,8 @@ import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import {withRouter} from 'react-router-dom';
 import Input from '../../../components/UI/Input/Input';
+import {connect} from 'react-redux';
 
 class ContactData extends Component{
     state = {
@@ -103,8 +103,14 @@ class ContactData extends Component{
         for (let formElementIdentifier in this.state.orderForm) {
             formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
+        
+        const order = {
+            ingredients: this.props.ingredients,
+            price: this.props.price,
+            orderData: formData
+        }
 
-        axios.post('/orders.json', formData)
+        axios.post('/orders.json', order)
         .then(response => {
             this.setState({loading: false});
             this.props.history.push('/');
@@ -208,4 +214,11 @@ class ContactData extends Component{
     }
 }
 
-export default withRouter(ContactData);
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients,
+        totalPrice: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(ContactData);
