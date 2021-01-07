@@ -11,6 +11,10 @@ const burger = (props) => {
     let transformedIngredients = Object.keys(props.ingredients)
         .map((igKey) => {
             // return array with each element appearing 'value' number of times
+            // Each element is an array created of size (props.ingredients[igKey])
+            // spread operator (...) is used to make a copy of an array as we traverse through each ingredient, so the BurgerIngredient components from
+            // the previous ingredient do not get lost.
+            // e.g. [[<BurgerIngredient/>, <BurgerIngredient/>],...]
             return [...Array(props.ingredients[igKey])].map((_, i) => {
                 return <BurgerIngredient key={igKey + i} type={igKey}/>
             });
