@@ -1,0 +1,18 @@
+.image {
+    width: 100%; /* Take up 100% of the grid column */
+    background-size: cover;
+    background-position: center;
+}
+
+.thumbnail-resize {
+    margin-bottom: 30px;
+}
+
+.form {
+    width: 30%;
+    margin: 25px auto;
+}
+
+h1 {
+    text-align: center;
+}

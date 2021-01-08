@@ -1,0 +1,39 @@
+body{
+	border: 20px solid #EE6352;
+	padding: 20px;
+	/* Next two lines basically says that - keep the width of the body at 50% at all times. This ensures it can be resized.
+	The maximum width of the body can be 700px when the window is big, then when we resize
+	the window, the width should stay at 50%. */
+	max-width: 700px;
+	width: 50%;
+	margin: 20px auto;
+	font-family: Source Sans Pro;
+}
+
+.indent{
+	border-left: 5px solid #EE6352;
+	padding-left: 10px;
+}
+
+.date{
+	color: #98C1D9;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+}
+
+h1{
+	color: #3D5A80;
+	font-weight: 700;
+	font-size: 2.0rem;
+}
+
+/* taken from online! Just search up hr styles */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.post{
+	margin-bottom:20px;
+}

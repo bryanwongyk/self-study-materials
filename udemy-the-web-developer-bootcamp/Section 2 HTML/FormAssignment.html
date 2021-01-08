@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Assignment</title>
+</head>
+<body>
+<h1> Register </h1>
+<form>
+	<!-- Name -->
+	<!-- we can use <p> or <div> for spacing, div spacing is smaller-->
+	<label for="firstName">First Name:</label>
+		<input type="text" id="firstName" name="firstName" placeholder="John" required>
+	<label for="lastName">Last Name:</label>
+		<input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+
+	<!-- Gender -->
+	<div>
+		<label for="male">Male</label>
+			<input type="radio" name="gender" id="male" value="male">
+		<label for="female">Female</label>
+			<input type="radio" name="gender" id="female" value="female">
+		<label for="other">Other</label>
+			<input type="radio" name="gender" id="other" value="other">
+	</div>
+
+	<!-- Email and password-->
+	<!-- Bonus: added a validation for length of the password using 'pattern' and 'required title'-->
+	<div>
+		<label for="email">Email: </label>
+			<input type="email" name="email" id="email" placeholder="your email" required>
+		<label for="password">Password: </label>
+			<input type="password" name="password" id="password" placeholder="your password" pattern=".{5,10}" required title="Password must be between 5 and 10 characters in length">
+	</div>
+
+	<!-- Birthday-->
+	<div>
+		<label for="birthday">Birthday: </label>
+		<select id="birthday" name="month">
+			<option value="0" selected disabled>Month</option>
+			<option value="january">January</option>
+			<option value="february">February</option>
+			<option value="march">March</option>
+			<option value="april">April</option>	
+		</select>	
+		<select id="birthday" name="day">
+			<option value="0" selected disabled>Day</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>	
+		</select>
+		<select id="birthday" name="year">
+			<option value="0" selected disabled>Year</option>
+			<option value="1999">1999</option>
+			<option value="1998">1998</option>
+			<option value="1997">1997</option>
+			<option value="1996">1996</option>	
+		</select>
+	</div>
+
+	<!-- Terms and conditions-->
+	<!-- Another way of doing labels-->
+	<div>
+		<label>
+			I agree to the terms and conditions
+				<input type="checkbox" name="termsAndConditions" required>
+		</label>
+	</div>
+
+	<!-- Submit button-->
+	<input type="submit">
+</form>
+
+</body>
+</html>

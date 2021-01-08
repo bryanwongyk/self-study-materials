@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bootstrap Grid System</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<style>
+		/* cell to see the grid layout through the borders*/
+		.cell{
+			border: pink solid 1px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-2 cell">Column lg 6</div>
+			<div class="col-lg-6 col-md-2 cell">Column lg 6</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 cell">Column lg 2</div>
+			<div class="col-lg-8 col-md-2 cell">Column lg 8</div>
+			<div class="col-lg-2 col-md-2 cell">Column lg 2</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3 col-sm-6 cell">TOUR DATE: </div>
+				<!-- split a cell further (nesting grids)-->
+				<div class="row">
+					<div class="col-lg-6 cell">First Half: </div>
+					<div class="col-lg-6 cell">Second Half: </div>
+				</div>
+			<div class="col-md-3 col-sm-6 cell">TOUR DATE: </div>
+			<div class="col-md-3 col-sm-6 cell">TOUR DATE: </div>
+			<div class=" col-md-3 col-sm-6 cell">TOUR DATE: </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<h1> Results </h1>
+<ul>
+
+<% if(parsedData["Response"] === 'True'){ %>
+    <% parsedData["Search"].forEach(function(movie){ %>
+        <li> <%= movie["Title"] %> </li>
+    <% }); %>
+<% } %> 
+
+</ul>
+
+<a href="/"> Search again</a>

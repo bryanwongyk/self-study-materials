@@ -1,0 +1,95 @@
+body {
+    background-color: #000;
+  }
+
+#landing-header {
+    /* z-index at 1 positions it in front of everything */
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+  }
+
+.slideshow { 
+    /* fixed means positioned relative to browser window */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* top and left positions list items into the top left of page*/
+    top: 0;
+    left: 0;
+    /* z-index affects whether it appears in front of everything or behind elements on the page */
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li { 
+    width: 100%;
+    height: 100%;
+    /* absolute means positioned relative to first ancestor element */ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* cover allows images to take up entire size */
+    background-size: cover;
+    /* Centres the image on the page*/
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+
+    /* actual animation */
+    animation: imageAnimation 50s linear infinite; 
+  }
+
+.slideshow li:nth-child(1) { 
+background-image: url(http://i.imgur.com/K3mPv14.jpg) 
+}
+.slideshow li:nth-child(2) { 
+background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+background-image: url(http://i.imgur.com/emvhOnb.jpg);
+animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+animation-delay: 40s; 
+}
+
+/* the keyframes describe what happens 0% into the animation, then 10% into the animation, then 20% etc. So each image only takes up 30% of the total time of the entire image animation.
+So from time 0% to 10%, the image fades in, it stays at full opacity till 20% in, where it then fades out and disappears by 30%. During this time the next animation also fades in (as coordinated using the animation-delay above.*/
+@keyframes imageAnimation { 
+    0% { 
+      opacity: 0; 
+      animation-timing-function: ease-in;
+    }
+    10% {
+        /* opacity of 1 means it fades in */
+      opacity: 1;
+      animation-timing-function: ease-out;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+        /* fades back out to opacity of 0 30% into animation */
+      opacity: 0
+    }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}

@@ -1,0 +1,37 @@
+body{
+    background-image: url(https://images.unsplash.com/photo-1415369629372-26f2fe60c467?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80);
+    background-size: cover;
+    background-position: center;
+    font-family: Lato;
+    color: white;
+}
+
+#content{
+    text-align: center;
+    padding-top: 25%;
+}
+
+/*
+If you have a background image and you inspect your body, you might see that your body ends before the end of the page. Therefore, when you do background-size: cover, and background-position: center, 
+it is really only taking into account the small body. What we can do, is give the html height 100% so it takes up the entire container of the site. This will also prevent the image from tiling if you resize the picture, as it is taking up the entire html page.
+*/
+html{
+    height:100%;
+}
+
+h1{
+    font-weight: 700; /* Bold */
+    font-size: 5em; /*5 times bigger than parent i.e. body */
+}
+
+hr {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2); /* This is a transparent colour that will give it the illusion of a shadow. Remember the last number in rgba is transparency value*/ 
+}
+
+h1,h3 {
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4), /* Add gradual shadow to the text by having three types of shadows w varying shades of grey. offset-x | offset-y| blur-radius (how thick it should be) | color */
+                 0px 8px 13px rgba(0,0,0,0.1),
+                 0px 18px 23px rgba(0,0,0,0.1);
+}

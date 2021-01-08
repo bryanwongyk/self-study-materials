@@ -1,0 +1,39 @@
+.image1 {
+    background-image: url(https://images.unsplash.com/photo-1542328689-df6c076c1604?ixlib=rb-1.2.1&auto=format&fit=crop&w=670&q=80);
+}
+
+.image2 {
+    background-image: url(https://images.unsplash.com/photo-1542995470-870e12e7e14f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+}
+
+.image3 {
+    background-image: url(https://images.unsplash.com/photo-1542614471-001ccf2b449c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+}
+
+.image {
+    width: 100%; /* Take up 100% of the grid column */
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+}
+
+.thumbnail-resize {
+    margin-bottom: 30px;
+}
+
+body {
+    padding-top: 70px;
+}
+
+.jumbotron {
+    color: #2c3e50;
+    background-color: #ecf0f1;
+}
+
+.navbar-dark {
+    background-color: #2c3e50;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "embed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "embed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bryan Wong",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.8.6"
+  }
+}

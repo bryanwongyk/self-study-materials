@@ -1,0 +1,16 @@
+{
+  "name": "databases",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "mongodb": "^3.4.1",
+    "mongoose": "^5.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bryan Wong",
+  "license": "ISC"
+}

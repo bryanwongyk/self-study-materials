@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form test</title>
+</head>
+<body>
+	<form>
+		<p>
+			<!-- Using inputs with labels -->
+			<label>Username: </label>
+				<input name="username" type="text" placeholder="Username" required>
+			<label>Password: </label>
+				<input name="password" type="password" placeholder="Password">
+			<label for="email"> Email: </label>
+				<input id="email" type="email" placeholder="E-mail">
+
+		</p>
+		<p>
+			<!-- Using textarea -->
+			<textarea name="textarea" rows="10" cols="20"></textarea> 
+
+			<!-- Dropdown menu -->
+			<select name="dropDown">
+				<option> hello </option>
+				<option value="changeInQueryString"> bye </option>
+			</select>
+		</p>
+
+		<p>
+			<!-- Radio buttons -->
+			<label for="dog">Dog</label>
+				<input type="radio" name="pets" id="dog" value="dog">
+			<label for="cat">Cat</label>
+				<input type="radio" name="pets" id="cat" value="cat">
+		</p>
+		<p>
+			<input type="submit">
+			<!-- <button>Submit</button> -->
+		</p>
+	</form>	
+</body>
+</html>

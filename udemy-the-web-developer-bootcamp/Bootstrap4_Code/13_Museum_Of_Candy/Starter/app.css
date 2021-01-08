@@ -1,0 +1,65 @@
+body {
+    background-color:#f5d9df;
+    font-family: "Nunito", sans-serif;
+    padding-top: 70px;
+}
+
+#mainNavbar .navbar-brand {
+    color: #ea1c2c;
+    font-size: 1.5rem;
+}
+
+#mainNavbar {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+#mainNavbar .nav-link {
+    color: white;
+}
+
+/*Whatever is in here, apply when we hover over the element*/
+#mainNavbar .nav-link:hover {
+    color: #ea1c2c;
+}
+
+/* If we wanted to remove duplication, we could make a class called 'red' and then apply it to all these areas in the code */
+#headingGroup span {
+    color: #ea1c2c;
+}
+
+#headingGroup h1 {
+    font-weight: 100;
+    font-size: 4rem;
+}
+
+.blurb h2 {
+    color: #EA1C2C;
+    font-weight: 100;
+    font-size: 2.5rem;
+}
+
+.blurb p {
+    color: #F498B8;
+    font-weight: 100;
+    font-size: 1.125rem;
+    line-height: 2.0;
+}
+
+.content {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.navbar.scrolled {
+    background: rgb(222, 192, 222);
+    transition: background 500ms; /*When the background changes, take a certain number of milliseconds or seconds*/
+}
+/* Media query allows us to selectively apply styles based on different screen sizes. Here, 1200px*/
+
+@media (max-width: 1200px) {
+    #headingGroup h1{
+        font-weight: 100;
+        font-size: 3rem;
+    }
+}
