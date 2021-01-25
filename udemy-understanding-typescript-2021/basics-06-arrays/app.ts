@@ -12,7 +12,7 @@ const person: {
   age: number;
   hobbies: string[];
   role: [number, string];
-  role_enum: {}
+  role_enum: Role;
 } = {
   name: 'Maximilian',
   age: 30,
