@@ -1,0 +1,124 @@
+// map-get($colors, main): #521751;
+$colors: (main: #521751, secondary: #fa923f);
+$border-default: 0.05rem solid map-get($colors, main);
+
+@import "typography.css";
+
+@mixin display-flex() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin media-min-width($width) {
+  @media (min-width: $width) {
+      @content;
+    }
+}
+
+html {
+  font-size: 94.75%;
+
+  @include media-min-width(40rem) {
+    /* @content goes here */
+    font-size: 125%;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  /*Nested properties*/
+  flex: {
+    direction: column;
+    wrap: nowrap;
+  }
+  align-items: center;
+  padding: 3rem 0;
+  box-sizing: border-box;
+}
+
+.sass-introduction {
+  border: $border-default;
+  background: #fae5ff;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0.2rem 0.2rem 0.1rem #ccc;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.sass-introduction p {
+  margin: 0;
+}
+
+.sass-details {
+  border: $border-default;
+  background: #fae5ff;
+  padding: 1rem;
+  text-align: center;
+  margin: 2rem 0;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.section-header {
+  border-bottom: $border-default;
+}
+
+.section-header h1 {
+  margin: 0 0 1rem 0;
+}
+
+.documentation-links {
+  @include display-flex();
+  list-style: none;
+  margin: 1rem 0 0 0;
+  padding: 0;
+  flex-direction: column;
+
+  /* SASS allows us to nest styles! e.g. the first one is technically .documentation-links li {}*/
+  li {
+    margin: 0.2rem 0;
+    background: white;
+  }
+
+  .documentation-link {
+    text-decoration: none;
+    color: map-get($colors, main);
+    display: block;
+    padding: 0.2rem;
+    border: $border-default;  
+
+    &:hover,
+    &:active {
+      color: white;
+      background: map-get($colors, secondary);
+      border-color: map-get($colors, secondary);
+    }
+  }
+}
+
+@media (min-width: 40rem) {
+  html {
+    font-size: 125%;
+  }
+
+  .container {
+    padding: 3rem 0;
+  }
+
+  .sass-introduction,
+  .sass-details {
+    width: 30rem;
+  }
+}
