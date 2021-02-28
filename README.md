@@ -23,6 +23,9 @@
 
 [ ] Frontend Masters - Complete Intro to Containers
 
+# To Read
+[ ] You Don't Know JS
+
 # Topics I want to learn more about
 * UX Design Principles
 * Testing (e.g. Jest, Cypress, Enzyme)
