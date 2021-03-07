@@ -3,9 +3,9 @@
 
 [x] Udemy - CSS - The Complete Guide 2020 (incl. Flexbox, Grid, SASS)
 
-[ ] Udemy - React - The Complete Guide (incl Hooks, React Router, Redux)
+[IN-PROGRESS] Udemy - React - The Complete Guide (incl Hooks, React Router, Redux)
 
-[ ] Udemy - Understanding TypeScript - 2021 Edition
+[IN-PROGRESS] Udemy - Understanding TypeScript - 2021 Edition
 
 [ ] Udemy - Docker & Kubernetes - The Complete Guide
 
@@ -19,7 +19,7 @@
 
 [ ] Frontend Masters - CSS In-Depth
 
-[ ] Frontend Masters - Testing Practices and Principles
+[IN-PROGRESS] Frontend Masters - Testing Practices and Principles
 
 [ ] Frontend Masters - Complete Intro to Containers
 
