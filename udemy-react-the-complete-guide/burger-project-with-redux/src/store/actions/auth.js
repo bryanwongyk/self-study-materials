@@ -22,7 +22,7 @@ const authFail = (error) => {
   };
 };
 
-const auth = (email, password) => {
+const auth = (email, password, isSignUp) => {
   return (dispatch) => {
     // authenticate the user
     dispatch(authStart());
@@ -31,12 +31,18 @@ const auth = (email, password) => {
       password: password,
       returnSecureToken: true,
     };
+
+    // if it is signup
+    let url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC8u6QhYxwdNmAxqfyKnoGQ-duyqu6oiV4";
+    // if it is signin
+    if (!isSignUp) {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC8u6QhYxwdNmAxqfyKnoGQ-duyqu6oiV4";
+    }
     // no need for an axios instance bc we do not really need a base URL
     axios
-      .post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC8u6QhYxwdNmAxqfyKnoGQ-duyqu6oiV4",
-        authData
-      )
+      .post(url, authData)
       .then((response) => {
         console.log(response);
         dispatch(authSuccess(response.data));

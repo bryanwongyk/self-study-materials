@@ -39,6 +39,8 @@ const Auth = () => {
     },
   });
 
+  const [isSignUp, setSignUp] = useState(true);
+
   const checkValidity = (value, rules) => {
     let isValid = true;
     if (!rules) {
@@ -111,7 +113,13 @@ const Auth = () => {
   const submitHandler = (event) => {
     // prevent default reloading of the page when you submit a form
     event.preventDefault();
-    dispatch(actions.auth(controls.email.value, controls.password.value));
+    dispatch(
+      actions.auth(controls.email.value, controls.password.value, isSignUp)
+    );
+  };
+
+  const switchAuthModeHandler = () => {
+    setSignUp((prevSignUp) => !prevSignUp);
   };
 
   return (
@@ -120,6 +128,9 @@ const Auth = () => {
         {form}
         <Button btnType="Success">SUBMIT</Button>
       </form>
+      <Button btnType="Danger" clicked={switchAuthModeHandler}>
+        SWITCH TO {isSignUp ? "SIGNIN" : "SIGNUP"}
+      </Button>
     </div>
   );
 };
