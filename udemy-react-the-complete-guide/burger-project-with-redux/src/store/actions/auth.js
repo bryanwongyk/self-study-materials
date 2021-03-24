@@ -23,6 +23,23 @@ const authFail = (error) => {
   };
 };
 
+const logout = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+  };
+};
+
+// MIDDLEWARE / THUNKS
+const checkAuthTimeout = (expirationTime) => {
+  return (dispatch) => {
+    // after the token expires, log the user out
+    // not setTimeout expects to get milliseconds, and expirationTime is in seconds
+    setTimeout(() => {
+      dispatch(logout());
+    }, expirationTime * 1000);
+  };
+};
+
 const auth = (email, password, isSignUp) => {
   return (dispatch) => {
     // authenticate the user
@@ -49,6 +66,7 @@ const auth = (email, password, isSignUp) => {
       .then((response) => {
         console.log(response);
         dispatch(authSuccess(response.data.idToken, response.data.localId));
+        dispatch(checkAuthTimeout(response.data.expiresIn));
       })
       .catch((error) => {
         dispatch(authFail(error.response.data.error));
@@ -56,4 +74,4 @@ const auth = (email, password, isSignUp) => {
   };
 };
 
-export { authStart, auth, authSuccess, authFail };
+export { authStart, auth, authSuccess, authFail, checkAuthTimeout };
