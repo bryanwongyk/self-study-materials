@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import burgerBuilderReducer from "./store/reducers/burgerBuilder";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
+require("dotenv").config();
 
 const composeEnhancers =
   (typeof window !== "undefined" &&

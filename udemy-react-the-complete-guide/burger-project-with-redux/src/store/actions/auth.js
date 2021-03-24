@@ -35,11 +35,13 @@ const auth = (email, password, isSignUp) => {
 
     // if it is signup
     let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC8u6QhYxwdNmAxqfyKnoGQ-duyqu6oiV4";
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
+      process.env.REACT_APP_API_KEY;
     // if it is signin
     if (!isSignUp) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC8u6QhYxwdNmAxqfyKnoGQ-duyqu6oiV4";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
+        process.env.REACT_APP_API_KEY;
     }
     // no need for an axios instance bc we do not really need a base URL
     axios
