@@ -1,14 +1,11 @@
 export {
-    addIngredient,
-    removeIngredient,
-    initIngredients,
-} from './burgerBuilder';
+  addIngredient,
+  removeIngredient,
+  initIngredients,
+} from "./burgerBuilder";
 
-export {
+export {} from "./order";
 
-} from './order'
+export { ADD_INGREDIENT, REMOVE_INGREDIENT } from "./actionTypes";
 
-export {
-    ADD_INGREDIENT,
-    REMOVE_INGREDIENT,
-} from './actionTypes'
+export { auth } from "./auth";

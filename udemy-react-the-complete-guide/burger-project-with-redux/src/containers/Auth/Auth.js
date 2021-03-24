@@ -1,10 +1,13 @@
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
 import classes from "./Auth.module.css";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
+import * as actions from "../../store/actions/index";
 
 const Auth = () => {
+  const dispatch = useDispatch();
+
   const [controls, setControls] = useState({
     email: {
       elementType: "input",
@@ -105,11 +108,17 @@ const Auth = () => {
     />
   ));
 
+  const submitHandler = (event) => {
+    // prevent default reloading of the page when you submit a form
+    event.preventDefault();
+    dispatch(actions.auth(controls.email.value, controls.password.value));
+  };
+
   return (
     <div className={classes.Auth}>
-      <form>
+      <form onSubmit={submitHandler}>
         {form}
-        <Button btnType="Success"></Button>
+        <Button btnType="Success">SUBMIT</Button>
       </form>
     </div>
   );
