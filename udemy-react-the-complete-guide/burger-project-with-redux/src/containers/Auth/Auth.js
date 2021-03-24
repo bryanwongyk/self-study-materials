@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./Auth.module.css";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import * as actions from "../../store/actions/index";
 
 const Auth = () => {
@@ -97,7 +98,7 @@ const Auth = () => {
     });
   }
 
-  const form = formElementsArray.map((formElement) => (
+  let form = formElementsArray.map((formElement) => (
     <Input
       key={formElement.id}
       elementType={formElement.config.elementType}
@@ -122,8 +123,22 @@ const Auth = () => {
     setSignUp((prevSignUp) => !prevSignUp);
   };
 
+  const loading = useSelector((state) => state.auth.loading);
+  const error = useSelector((state) => state.auth.error);
+
+  if (loading) {
+    form = <Spinner />;
+  }
+
+  let errorMessage = null;
+
+  if (!!error) {
+    errorMessage = <p>{error.message}</p>;
+  }
+
   return (
     <div className={classes.Auth}>
+      {errorMessage}
       <form onSubmit={submitHandler}>
         {form}
         <Button btnType="Success">SUBMIT</Button>
