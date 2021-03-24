@@ -8,10 +8,11 @@ const authStart = () => {
   };
 };
 
-const authSuccess = (authData) => {
+const authSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    authData: authData,
+    idToken: token,
+    userId: userId,
   };
 };
 
@@ -45,7 +46,7 @@ const auth = (email, password, isSignUp) => {
       .post(url, authData)
       .then((response) => {
         console.log(response);
-        dispatch(authSuccess(response.data));
+        dispatch(authSuccess(response.data.idToken, response.data.localId));
       })
       .catch((error) => {
         console.error(error);

@@ -51,9 +51,8 @@ const reducer = (state = initialState, action) => {
         error: false,
       };
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
 export default reducer;
