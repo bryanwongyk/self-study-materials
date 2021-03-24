@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import burgerBuilderReducer from "./store/reducers/burgerBuilder";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
+import orderReducer from "./store/reducers/order";
 require("dotenv").config();
 
 const composeEnhancers =
@@ -18,6 +19,7 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   burgerBuilder: burgerBuilderReducer,
   auth: authReducer,
+  order: orderReducer,
 });
 const store = createStore(
   rootReducer,

@@ -1,51 +1,53 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, { Fragment, useState, useEffect } from "react";
 
-import Modal from '../../components/UI/Modal/Modal';
+import Modal from "../../components/UI/Modal/Modal";
 
 // functional based component, that returns another functional based component
 const withErrorHandler = (WrappedComponent, axios) => {
-    const WithErrorHandler = props => {
-        //set state of error to null initially
-        const [error, setError] = useState(null);
+  const WithErrorHandler = (props) => {
+    //set state of error to null initially
+    const [error, setError] = useState(null);
 
-        const reqInterceptor = axios.interceptors.request.use(req => {
-            // We want to clear any errors when we make a request.
-            // We only want to set an error when we make a response.
-            setError(null);
-            return req;
-        })
-        // We aren't interested in the response, so we just immediately return the response.
-        // We just want to catch errors
-        const resInterceptor = axios.interceptors.response.use(res => res, error => {
-            setError(error);
-            return Promise.reject(error);
-        })
+    const reqInterceptor = axios.interceptors.request.use((req) => {
+      // We want to clear any errors when we make a request.
+      // We only want to set an error when we make a response.
+      setError(null);
+      return req;
+    });
+    // We aren't interested in the response, so we just immediately return the response.
+    // We just want to catch errors
+    const resInterceptor = axios.interceptors.response.use(
+      (res) => res,
+      (error) => {
+        setError(error);
+        return Promise.reject(error);
+      }
+    );
 
-        // We need to make a handler for clicking out the modal.
-        // Basically reversing the state that is responsible for the modal showing up in the first place.
-        const errorConfirmedHandler = () => {
-            setError(null);
-        }
-
-        useEffect(() => {
-            return () => {
-                axios.interceptors.request.eject(reqInterceptor);
-                axios.interceptors.response.eject(resInterceptor);
-            }
-        }, [reqInterceptor, resInterceptor]);
-
-        return (
-            <Fragment>
-                <Modal show={error} modalClosed={errorConfirmedHandler}>
-                    {error ? error.message : null}
-                </Modal>
-                <WrappedComponent {...props}/>
-            </Fragment>
-        );
+    // We need to make a handler for clicking out the modal.
+    // Basically reversing the state that is responsible for the modal showing up in the first place.
+    const errorConfirmedHandler = () => {
+      setError(null);
     };
-    return WithErrorHandler;
-}
 
+    useEffect(() => {
+      return () => {
+        axios.interceptors.request.eject(reqInterceptor);
+        axios.interceptors.response.eject(resInterceptor);
+      };
+    }, [reqInterceptor, resInterceptor]);
+
+    return (
+      <Fragment>
+        <Modal show={error} modalClosed={errorConfirmedHandler}>
+          {error ? error.message : null}
+        </Modal>
+        <WrappedComponent {...props} />
+      </Fragment>
+    );
+  };
+  return WithErrorHandler;
+};
 
 // HOC is a function that takes a component, and returns a new component
 // const withErrorHandler = (WrappedComponent, axios) => {
