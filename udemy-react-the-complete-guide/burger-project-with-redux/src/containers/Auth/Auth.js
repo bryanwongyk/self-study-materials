@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import classes from "./Auth.module.css";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
@@ -136,8 +137,15 @@ const Auth = () => {
     errorMessage = <p>{error.message}</p>;
   }
 
+  const authToken = useSelector((state) => state.auth.token);
+  let authRedirect = null;
+  if (!!authToken) {
+    authRedirect = <Redirect to="/" />;
+  }
+
   return (
     <div className={classes.Auth}>
+      {authRedirect}
       {errorMessage}
       <form onSubmit={submitHandler}>
         {form}
