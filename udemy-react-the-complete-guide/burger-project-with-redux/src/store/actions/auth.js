@@ -74,4 +74,4 @@ const auth = (email, password, isSignUp) => {
   };
 };
 
-export { authStart, auth, authSuccess, authFail, checkAuthTimeout };
+export { authStart, auth, authSuccess, authFail, checkAuthTimeout, logout };
