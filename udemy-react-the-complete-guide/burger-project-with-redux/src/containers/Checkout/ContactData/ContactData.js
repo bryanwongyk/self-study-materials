@@ -107,6 +107,7 @@ class ContactData extends Component {
       ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
+      userId: this.props.userId,
     };
 
     this.props.onOrderBurger(order, this.props.token);
@@ -209,11 +210,7 @@ class ContactData extends Component {
               touched={formElement.config.touched}
             />
           ))}
-          <Button
-            btnType="Success"
-            disabled={!this.state.formIsValid}
-            clicked={this.orderHandler}
-          >
+          <Button btnType="Success" disabled={!this.state.formIsValid}>
             ORDER
           </Button>
         </form>
@@ -233,6 +230,7 @@ const mapStateToProps = (state) => {
     ingredients: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     token: state.auth.token,
+    userId: state.auth.userId,
   };
 };
 
