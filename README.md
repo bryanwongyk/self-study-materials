@@ -34,3 +34,4 @@
 * CMSes
 * Web-workers
 * Containers
+* Authentication via cookies
