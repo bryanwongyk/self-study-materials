@@ -8,4 +8,4 @@ export * from "./order";
 
 export { ADD_INGREDIENT, REMOVE_INGREDIENT } from "./actionTypes";
 
-export { auth, logout } from "./auth";
+export { auth, logout, setAuthRedirectPath } from "./auth";

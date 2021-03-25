@@ -4,6 +4,7 @@ const initialState = {
   ingredients: null,
   totalPrice: 0,
   error: false,
+  building: false,
 };
 
 // hard code for now until we can handle asynchronous http requests in conjunction with redux state management
@@ -24,6 +25,7 @@ const reducer = (state = initialState, action) => {
           [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
         },
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+        building: true,
       };
     case actionTypes.REMOVE_INGREDIENT:
       return {
@@ -33,6 +35,7 @@ const reducer = (state = initialState, action) => {
           [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
         },
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
+        building: true,
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
       return {
@@ -49,6 +52,7 @@ const reducer = (state = initialState, action) => {
           meat: action.ingredients.meat,
         },
         error: false,
+        building: false,
       };
     default:
       return state;

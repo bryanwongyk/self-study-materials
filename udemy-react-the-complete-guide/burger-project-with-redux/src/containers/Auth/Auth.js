@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import classes from "./Auth.module.css";
@@ -9,6 +9,16 @@ import * as actions from "../../store/actions/index";
 
 const Auth = () => {
   const dispatch = useDispatch();
+
+  const buildingBurger = useSelector((state) => state.burgerBuilder.building);
+  const authRedirectPath = useSelector((state) => state.auth.authRedirectPath);
+  if (buildingBurger) {
+  }
+  useEffect(() => {
+    if (!buildingBurger && authRedirectPath === "/") {
+      dispatch(actions.setAuthRedirectPath("/"));
+    }
+  }, [buildingBurger, authRedirectPath, dispatch]);
 
   const [controls, setControls] = useState({
     email: {
@@ -140,7 +150,7 @@ const Auth = () => {
   const authToken = useSelector((state) => state.auth.token);
   let authRedirect = null;
   if (!!authToken) {
-    authRedirect = <Redirect to="/" />;
+    authRedirect = <Redirect to={authRedirectPath} />;
   }
 
   return (
