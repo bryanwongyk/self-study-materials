@@ -24,6 +24,9 @@ const authFail = (error) => {
 };
 
 const logout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("userId");
   return {
     type: actionTypes.AUTH_LOGOUT,
   };
@@ -65,6 +68,15 @@ const auth = (email, password, isSignUp) => {
       .post(url, authData)
       .then((response) => {
         console.log(response);
+
+        // get current time, and add expiration time (converted from milliseconds to seconds). Then wrap it all to return a Date object.
+        const expirationDate = new Date(
+          new Date().getTime() + response.data.expiresIn * 1000
+        );
+        localStorage.setItem("expirationDate", expirationDate);
+        localStorage.setItem("token", response.data.idToken);
+        localStorage.setItem("userId", response.data.localId);
+
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
@@ -81,6 +93,36 @@ const setAuthRedirectPath = (path) => {
   };
 };
 
+// e.g. check state if the user closes the tab and returns to the website
+const authCheckState = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    // if we are not logged in, remove tokens thorugh logout()
+    if (!token) {
+      dispatch(logout());
+    } else {
+      // if we are logged in, check the expiration
+      // note: returning anything from localStorage will be given as a string, so we must convert it back into a Date.
+      const expirationDate = new Date(localStorage.getItem("expirationDate"));
+      // if the current date is past the expiration date, then log out. Otherwise,
+      // successfully authenticate user with their token (from localStorage) and userId (get from firebase)
+      if (expirationDate < new Date()) {
+        dispatch(logout());
+      } else {
+        dispatch(authSuccess(token, userId));
+        // set time out to log the user out after the remaining time. Get the difference between the expiration date in milliseconds, and the current date in milliseconds.
+        // convert it to seconds
+        dispatch(
+          checkAuthTimeout(
+            (expirationDate.getTime() - new Date().getTime()) / 1000
+          )
+        );
+      }
+    }
+  };
+};
+
 export {
   authStart,
   auth,
@@ -89,4 +131,5 @@ export {
   checkAuthTimeout,
   logout,
   setAuthRedirectPath,
+  authCheckState,
 };
