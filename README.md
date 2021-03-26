@@ -3,7 +3,7 @@
 
 [x] Udemy - CSS - The Complete Guide 2020 (incl. Flexbox, Grid, SASS)
 
-[IN-PROGRESS] Udemy - React - The Complete Guide (incl Hooks, React Router, Redux)
+[x] Udemy - React - The Complete Guide (incl Hooks, React Router, Redux)
 
 [IN-PROGRESS] Udemy - Understanding TypeScript - 2021 Edition
 
