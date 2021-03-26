@@ -9,10 +9,6 @@
 
 [ ] Udemy - Docker & Kubernetes - The Complete Guide
 
-[ ] Frontend Masters - Complete Intro to React
-
-[ ] Frontend Masters - Intermediate React
-
 [ ] Frontend Masters - JS The Hard Parts
 
 [ ] Frontend Masters - Deep JS Foundations
@@ -35,3 +31,4 @@
 * Web-workers
 * Containers
 * Authentication via cookies
+* CSS Variables
