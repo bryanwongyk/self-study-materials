@@ -23,6 +23,7 @@
 [ ] You Don't Know JS
 
 # Topics I want to learn more about
+* HTML Canvas
 * UX Design Principles
 * Testing (e.g. Jest, Cypress, Enzyme)
 * Accessibility (e.g. ARIA, a11y, semantic HTML)
