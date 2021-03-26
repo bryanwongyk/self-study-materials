@@ -12,10 +12,13 @@ import authReducer from "./store/reducers/auth";
 import orderReducer from "./store/reducers/order";
 require("dotenv").config();
 
+console.log(process.env.NODE_ENV);
 const composeEnhancers =
-  (typeof window !== "undefined" &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-  compose;
+  process.env.NODE_ENV === "development"
+    ? (typeof window !== "undefined" &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+      compose
+    : null;
 const rootReducer = combineReducers({
   burgerBuilder: burgerBuilderReducer,
   auth: authReducer,
