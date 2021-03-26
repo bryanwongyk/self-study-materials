@@ -21,6 +21,7 @@
 
 # To Read
 [ ] You Don't Know JS
+[ ] Cracking the Coding Interview
 
 # Topics I want to learn more about
 * HTML Canvas
