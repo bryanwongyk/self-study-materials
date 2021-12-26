@@ -36,3 +36,4 @@
 * Authentication via cookies
 * CSS Variables
 * CI/CD pipelines
+* AWS & Cloud computing
