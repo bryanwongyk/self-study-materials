@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
 
 const authStart = () => {
   // should be used to indicate a loading screen
